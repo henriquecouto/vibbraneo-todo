@@ -1,5 +1,0 @@
-{
-  "middlewares": [
-    "auth.js"
-  ]
-}
