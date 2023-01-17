@@ -1,5 +1,6 @@
+import { Button } from "@mui/material";
 import { FunctionComponent } from "react";
 
 export const App: FunctionComponent = () => {
-  return <div>Hello Vibbraneo Todo List</div>;
+  return <Button>Hello Vibbraneo Todo List</Button>;
 };
