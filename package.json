@@ -7,17 +7,23 @@
     "dev": "concurrently \"yarn fake-api\" \"vite\"",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "fake-api": "json-server ./fake-api/db.json",
+    "fake-api": "json-server ./fake-api/db.json --middlewares ./fake-api/middlewares/auth.cjs",
     "prepare": "./prepare.sh"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@mui/styled-engine-sc": "^5.11.0",
+    "axios": "^1.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.42.1",
     "react-router-dom": "^6.6.2",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "swr": "^2.0.0",
+    "zod": "^3.20.2"
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
