@@ -4,7 +4,7 @@
 
 Use this to set and get auth data.
 
-```js
+```jsx
 import { AuthProvider, useAuth } from "./features/auth";
 import { Suspense } from "react";
 
@@ -33,7 +33,7 @@ const ContainerComponent = () => {
 
 Use this to show a login form that dispatch auth request and changes auth data
 
-```js
+```jsx
 import { AuthForm, AuthHeader } from "../features/auth";
 
 const YourScreenComponent = () => {
