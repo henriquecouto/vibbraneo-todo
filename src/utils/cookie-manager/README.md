@@ -2,7 +2,7 @@
 
 ### Setting a new cookie value
 
-```
+```js
 cookieManager.set({
   cookieName: "name",
   value: "value",
@@ -13,12 +13,12 @@ cookieManager.set({
 
 ### Reading a cookie value
 
-```
+```js
 const value = cookieManager.get({ cookieName: "name" });
 ```
 
 ### Removing a cookie value
 
-```
+```js
 cookieManager.remove({ cookieName: "name" });
 ```
