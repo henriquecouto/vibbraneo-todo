@@ -1,13 +1,13 @@
 import { CookieManager } from "./cookie-manager.types";
 
-const cookies: { [cookieName: string]: string | undefined } =
-  document.cookie?.split("; ").reduce((previous, current) => {
-    const [name, value] = current.split("=");
-    return { ...previous, [name]: value };
-  }, {}) || [];
-
 export const cookieManager: CookieManager = {
   get: ({ cookieName }) => {
+    const cookies: { [cookieName: string]: string | undefined } =
+      document.cookie?.split("; ").reduce((previous, current) => {
+        const [name, value] = current.split("=");
+        return { ...previous, [name]: value };
+      }, {}) || [];
+
     const value = cookies[cookieName];
     return value ?? "";
   },

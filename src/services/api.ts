@@ -6,7 +6,7 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const authToken = cookieManager.get({ cookieName: "auth-token" });
+  const authToken = cookieManager.get({ cookieName: "authToken" });
   const isAuthRoute = config.url === "/auth";
 
   if (!authToken && !isAuthRoute) {
