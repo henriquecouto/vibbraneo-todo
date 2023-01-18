@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 import { routes } from "./constants/routes";
 import { AuthProvider } from "./features/auth";
-import { AuthScreen } from "./screens/auth";
 
 const HomeScreen = lazy(() => import("./screens/home"));
 const AboutScreen = lazy(() => import("./screens/about"));
+const AuthScreen = lazy(() => import("./screens/auth"));
 
 const router = createBrowserRouter([
   {

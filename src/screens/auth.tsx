@@ -5,7 +5,7 @@ import { AuthForm, AuthHeader } from "../features/auth";
 import { useAuth } from "../features/auth/context/auth-context";
 import { GlobalTheme } from "../theme/global";
 
-export const AuthScreen = () => {
+const AuthScreen = () => {
   const { authToken } = useAuth();
 
   if (authToken) {
@@ -35,3 +35,5 @@ export const AuthScreen = () => {
     </>
   );
 };
+
+export default AuthScreen;
