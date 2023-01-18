@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     element: <AboutScreen />,
   },
   { path: routes.auth.path, element: <AuthScreen /> },
+  { path: routes.list.path, element: <>list</> },
 ]);
 
 export const RouterProvider = () => (
