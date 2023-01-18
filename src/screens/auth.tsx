@@ -9,7 +9,7 @@ export const AuthScreen = () => {
   const { authToken } = useAuth();
 
   if (authToken) {
-    return <Navigate to={routes.home} />;
+    return <Navigate to={routes.home.path} />;
   }
 
   return (

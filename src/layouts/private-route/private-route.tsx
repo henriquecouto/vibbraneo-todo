@@ -10,7 +10,7 @@ export const PrivateRoute: FunctionComponent<PrivateRouteProps> = ({
   const { authToken } = useAuth();
 
   if (!authToken) {
-    return <Navigate to={routes.auth} />;
+    return <Navigate to={routes.auth.path} />;
   }
 
   return <>{children}</>;

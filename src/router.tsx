@@ -13,14 +13,14 @@ const AboutScreen = lazy(() => import("./screens/about"));
 
 const router = createBrowserRouter([
   {
-    path: routes.home,
+    path: routes.home.path,
     element: <HomeScreen />,
   },
   {
-    path: routes.about,
+    path: routes.about.path,
     element: <AboutScreen />,
   },
-  { path: routes.auth, element: <AuthScreen /> },
+  { path: routes.auth.path, element: <AuthScreen /> },
 ]);
 
 export const RouterProvider = () => (
