@@ -10,6 +10,7 @@ import { AuthProvider } from "./features/auth";
 const HomeScreen = lazy(() => import("./screens/home"));
 const AboutScreen = lazy(() => import("./screens/about"));
 const AuthScreen = lazy(() => import("./screens/auth"));
+const TodoScreen = lazy(() => import("./screens/todo"));
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     element: <AboutScreen />,
   },
   { path: routes.auth.path, element: <AuthScreen /> },
-  { path: routes.list.path, element: <>list</> },
+  { path: routes.list.path, element: <TodoScreen /> },
 ]);
 
 export const RouterProvider = () => (

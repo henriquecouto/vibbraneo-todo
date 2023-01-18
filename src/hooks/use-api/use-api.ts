@@ -9,9 +9,9 @@ export const useApi = ({ path }: UseApiProps) => {
     []
   );
 
-  const { data } = useSWR(path, fetcher, {
+  const { data, mutate } = useSWR(path, fetcher, {
     suspense: true,
   });
 
-  return { data };
+  return { data, mutate };
 };
