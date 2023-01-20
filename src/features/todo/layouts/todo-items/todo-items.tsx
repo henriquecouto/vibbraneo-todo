@@ -1,18 +1,25 @@
-import { Paper, Grid, Typography } from "@mui/material";
+import { Paper, Grid, Typography, IconButton } from "@mui/material";
 import { FunctionComponent } from "react";
 import { useTodo } from "../../hooks/use-todo";
 import { ItemProps, TodoItemsProps } from "./todo-items.types";
 import Nestable from "react-nestable";
 import "react-nestable/dist/styles/index.css";
-import { DragIndicator, ExpandLess, ExpandMore } from "@mui/icons-material";
+import {
+  DeleteForever,
+  DragIndicator,
+  ExpandLess,
+  ExpandMore,
+} from "@mui/icons-material";
 import { updateItemsApi } from "../../adapters/uptate-items";
 import { ParsedTodoItem } from "../../adapters/get-todo/get-todo.types";
+import { removeItemApi } from "../../adapters/remove-item";
 
-const renderItem = ({ item, collapseIcon, handler }: any) => (
-  <Item {...item} collapsible={collapseIcon} handler={handler} />
-);
-
-const Item: FunctionComponent<ItemProps> = ({ text, collapsible, handler }) => {
+const Item: FunctionComponent<ItemProps> = ({
+  item,
+  collapseIcon,
+  handler,
+  onDelete,
+}) => {
   return (
     <Grid container alignItems="center">
       <Grid item sx={{ cursor: "move" }}>
@@ -20,13 +27,16 @@ const Item: FunctionComponent<ItemProps> = ({ text, collapsible, handler }) => {
       </Grid>
       <Grid item xs>
         <Paper sx={{ padding: 2 }}>
-          <Grid container>
+          <Grid container alignItems="center">
             <Grid item xs>
-              <Typography>{text}</Typography>
+              <Typography>{item.text}</Typography>
             </Grid>
-            <Grid item sx={{ cursor: "pointer" }}>
-              {collapsible}
+            <Grid item>
+              <IconButton onClick={() => onDelete(item.id)}>
+                <DeleteForever />
+              </IconButton>
             </Grid>
+            <Grid item>{collapseIcon}</Grid>
           </Grid>
         </Paper>
       </Grid>
@@ -35,7 +45,16 @@ const Item: FunctionComponent<ItemProps> = ({ text, collapsible, handler }) => {
 };
 
 export const TodoItems: FunctionComponent<TodoItemsProps> = ({ id }) => {
-  const { data } = useTodo({ id });
+  const { data, mutate } = useTodo({ id });
+
+  const handleOnDeleteItem = async (itemId: number) => {
+    await removeItemApi({
+      id,
+      itemToRemoveId: itemId,
+      parsedItems: data.items,
+    });
+    mutate();
+  };
 
   return (
     <Grid container gap={2} direction="column">
@@ -43,12 +62,21 @@ export const TodoItems: FunctionComponent<TodoItemsProps> = ({ id }) => {
         onChange={({ items }) => {
           updateItemsApi({ parsedItems: items as ParsedTodoItem[], id });
         }}
-        renderItem={renderItem}
+        renderItem={({ collapseIcon, item, handler }) => (
+          <Item
+            item={item as ParsedTodoItem}
+            collapseIcon={collapseIcon}
+            handler={handler}
+            onDelete={handleOnDeleteItem}
+          />
+        )}
         items={data.items}
         handler={<DragIndicator />}
-        renderCollapseIcon={({ isCollapsed }) =>
-          isCollapsed ? <ExpandMore /> : <ExpandLess />
-        }
+        renderCollapseIcon={({ isCollapsed }) => (
+          <IconButton>
+            {isCollapsed ? <ExpandMore /> : <ExpandLess />}
+          </IconButton>
+        )}
       />
     </Grid>
   );

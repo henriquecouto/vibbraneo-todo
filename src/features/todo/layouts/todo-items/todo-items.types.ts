@@ -5,4 +5,9 @@ export type TodoItemsProps = {
   id: number;
 };
 
-export type ItemProps = { collapsible: boolean; handler: any } & ParsedTodoItem;
+export type ItemProps = {
+  item: ParsedTodoItem;
+  collapseIcon: ReactNode;
+  handler: ReactNode;
+  onDelete: (itemId: number) => void;
+};
