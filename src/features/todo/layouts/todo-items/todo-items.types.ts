@@ -1,7 +1,8 @@
-import { TodoItem } from "../../../../entities/todo";
+import { ReactNode } from "react";
+import { ParsedTodoItem } from "../../adapters/get-todo/get-todo.types";
 
 export type TodoItemsProps = {
   id: number;
 };
 
-export type ItemProps = { opened?: boolean } & Partial<TodoItem>;
+export type ItemProps = { collapsible: boolean; handler: any } & ParsedTodoItem;

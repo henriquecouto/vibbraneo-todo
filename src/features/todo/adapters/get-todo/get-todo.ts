@@ -1,6 +1,6 @@
 import { Todo, TodoItem } from "../../../../entities/todo";
 import { useApi } from "../../../../hooks/use-api";
-import { GetTodoApi } from "./get-todo.types";
+import { GetTodoApi, ParsedTodoItem } from "./get-todo.types";
 
 const sortItems = (itemA: TodoItem, itemB: TodoItem) => {
   if (itemA.itens) {
@@ -13,10 +13,18 @@ const sortItems = (itemA: TodoItem, itemB: TodoItem) => {
   return 0;
 };
 
+const parseItems = (item: TodoItem): ParsedTodoItem => ({
+  id: item.id,
+  children: item.itens?.map(parseItems),
+  text: item.item,
+});
+
 export const getTodoApi: GetTodoApi = ({ id }) => {
   const { data, mutate } = useApi({ path: `/todo/${id}` });
 
-  const parsedItemsData = (data as Todo).itens.sort(sortItems);
+  const sortedItemsData = (data as Todo).itens.sort(sortItems);
 
-  return { data: { ...data, itens: parsedItemsData }, mutate };
+  const parsedItemsData = sortedItemsData.map(parseItems);
+
+  return { data: { ...data, items: parsedItemsData }, mutate };
 };
