@@ -1,19 +1,19 @@
 import { CancelOutlined, Edit, Check } from "@mui/icons-material";
 import { IconButton, Grid, Typography, Box } from "@mui/material";
 import { ChangeEventHandler, FunctionComponent, useState } from "react";
-import { useParams } from "react-router-dom";
 import { updateNameApi } from "../../adapters/update-name";
 import { useTodo } from "../../hooks/use-todo";
+import { TodoNameProps } from "./todo-name.types";
 
 import * as S from "./todo-name.styles";
 
-export const TodoName: FunctionComponent = () => {
+export const TodoName: FunctionComponent<TodoNameProps> = ({ id }) => {
   const [edit, setEdit] = useState(false);
-  const params = useParams();
   const {
     data: { name },
     mutate,
-  } = useTodo({ id: Number(params.id) });
+  } = useTodo({ id });
+
   const [changedName, setChangedName] = useState(name);
 
   const handleEdit = () => setEdit((old) => !old);
@@ -25,7 +25,7 @@ export const TodoName: FunctionComponent = () => {
   };
 
   const handleSaveName = async () => {
-    await updateNameApi({ name: changedName, id: Number(params.id) });
+    await updateNameApi({ name: changedName, id: Number(id) });
     await mutate();
     handleEdit();
   };

@@ -1,13 +1,17 @@
 import { FunctionComponent } from "react";
-import { TodoName } from "../features/todo";
+import { useParams } from "react-router-dom";
+import { TodoItems, TodoName } from "../features/todo";
 import { PrivateRoute } from "../layouts/private-route";
 import { ScreenContainer } from "../layouts/screen-container";
 
 const TodoScreen: FunctionComponent = () => {
+  const { id } = useParams();
+
   return (
     <PrivateRoute>
       <ScreenContainer>
-        <TodoName />
+        <TodoName id={Number(id)} />
+        <TodoItems id={Number(id)} />
       </ScreenContainer>
     </PrivateRoute>
   );

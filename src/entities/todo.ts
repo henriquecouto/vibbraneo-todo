@@ -2,7 +2,7 @@ export type TodoItem = {
   id: number;
   order: number;
   item?: string;
-  itens: TodoItem[];
+  itens?: TodoItem[];
 };
 
 export type Todo = {
