@@ -1,13 +1,15 @@
-import { ReactNode } from "react";
-import { ParsedTodoItem } from "../../adapters/get-todo/get-todo.types";
+import { Item } from "react-nestable";
+import { ItemProps } from "../item/item.types";
 
 export type TodoItemsProps = {
   id: number;
 };
 
-export type ItemProps = {
-  item: ParsedTodoItem;
-  collapseIcon: ReactNode;
-  handler: ReactNode;
-  onDelete: (itemId: number) => void;
-};
+export type RenderItemProps = { item: Item } & Pick<
+  ItemProps,
+  "collapseIcon" | "handler"
+>;
+
+export type HandleChangeProps = { items: Item[] };
+
+export type RenderCollapseIconProps = { isCollapsed: boolean };

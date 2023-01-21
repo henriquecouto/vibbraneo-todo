@@ -1,48 +1,20 @@
-import { Paper, Grid, Typography, IconButton } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import { FunctionComponent } from "react";
 import { useTodo } from "../../hooks/use-todo";
-import { ItemProps, TodoItemsProps } from "./todo-items.types";
+import {
+  HandleChangeProps,
+  RenderCollapseIconProps,
+  RenderItemProps,
+  TodoItemsProps,
+} from "./todo-items.types";
 import Nestable from "react-nestable";
 import "react-nestable/dist/styles/index.css";
-import {
-  DeleteForever,
-  DragIndicator,
-  ExpandLess,
-  ExpandMore,
-} from "@mui/icons-material";
+import { DragIndicator, ExpandLess, ExpandMore } from "@mui/icons-material";
 import { updateItemsApi } from "../../adapters/uptate-items";
 import { ParsedTodoItem } from "../../adapters/get-todo/get-todo.types";
 import { removeItemApi } from "../../adapters/remove-item";
-
-const Item: FunctionComponent<ItemProps> = ({
-  item,
-  collapseIcon,
-  handler,
-  onDelete,
-}) => {
-  return (
-    <Grid container alignItems="center">
-      <Grid item sx={{ cursor: "move" }}>
-        {handler}
-      </Grid>
-      <Grid item xs>
-        <Paper sx={{ padding: 2 }}>
-          <Grid container alignItems="center">
-            <Grid item xs>
-              <Typography>{item.text}</Typography>
-            </Grid>
-            <Grid item>
-              <IconButton onClick={() => onDelete(item.id)}>
-                <DeleteForever />
-              </IconButton>
-            </Grid>
-            <Grid item>{collapseIcon}</Grid>
-          </Grid>
-        </Paper>
-      </Grid>
-    </Grid>
-  );
-};
+import { Item } from "../item/item";
+import { renameItemApi } from "../../adapters/rename-item";
 
 export const TodoItems: FunctionComponent<TodoItemsProps> = ({ id }) => {
   const { data, mutate } = useTodo({ id });
@@ -56,27 +28,42 @@ export const TodoItems: FunctionComponent<TodoItemsProps> = ({ id }) => {
     mutate();
   };
 
+  const handleOnRenameItem = async (itemId: number, name?: string) => {
+    await renameItemApi({
+      id,
+      itemToRenameId: itemId,
+      newName: name,
+      parsedItems: data.items,
+    });
+    mutate();
+  };
+
+  const renderItem = ({ collapseIcon, item, handler }: RenderItemProps) => (
+    <Item
+      item={item as ParsedTodoItem}
+      collapseIcon={collapseIcon}
+      handler={handler}
+      onDelete={handleOnDeleteItem}
+      onRename={handleOnRenameItem}
+    />
+  );
+
+  const handleOnChange = ({ items }: HandleChangeProps) => {
+    updateItemsApi({ parsedItems: items as ParsedTodoItem[], id });
+  };
+
+  const renderCollapseIcon = ({ isCollapsed }: RenderCollapseIconProps) => (
+    <IconButton>{isCollapsed ? <ExpandMore /> : <ExpandLess />}</IconButton>
+  );
+
   return (
     <Grid container gap={2} direction="column">
       <Nestable
-        onChange={({ items }) => {
-          updateItemsApi({ parsedItems: items as ParsedTodoItem[], id });
-        }}
-        renderItem={({ collapseIcon, item, handler }) => (
-          <Item
-            item={item as ParsedTodoItem}
-            collapseIcon={collapseIcon}
-            handler={handler}
-            onDelete={handleOnDeleteItem}
-          />
-        )}
+        onChange={handleOnChange}
+        renderItem={renderItem}
         items={data.items}
         handler={<DragIndicator />}
-        renderCollapseIcon={({ isCollapsed }) => (
-          <IconButton>
-            {isCollapsed ? <ExpandMore /> : <ExpandLess />}
-          </IconButton>
-        )}
+        renderCollapseIcon={renderCollapseIcon}
       />
     </Grid>
   );
