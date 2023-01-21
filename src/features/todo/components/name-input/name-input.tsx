@@ -13,10 +13,12 @@ export const NameInput: FunctionComponent<NameInputProps> = ({
   name,
   onChange,
   fontSize = "body1",
+  placeholder,
+  icon = <Edit />,
 }: NameInputProps) => {
   const { typography } = useTheme();
   const [edit, setEdit] = useState(false);
-  const [changedName, setChangedName] = useState(name);
+  const [changedName, setChangedName] = useState(name || "");
 
   const handleEdit = () => setEdit((old) => !old);
 
@@ -27,7 +29,8 @@ export const NameInput: FunctionComponent<NameInputProps> = ({
   };
 
   const handleSaveName = async () => {
-    onChange(changedName || "");
+    onChange(changedName);
+    setChangedName("");
     handleEdit();
   };
 
@@ -39,13 +42,14 @@ export const NameInput: FunctionComponent<NameInputProps> = ({
           value={changedName}
           variant="standard"
           onChange={handleChangeName}
+          placeholder={placeholder}
           sx={{
             "& .MuiInputBase-input": {
               fontSize: typography[fontSize].fontSize,
             },
           }}
           InputProps={{
-            endAdornment: (
+            startAdornment: (
               <>
                 <IconButton onClick={handleEdit}>
                   <CancelOutlined color="error" />
@@ -59,12 +63,10 @@ export const NameInput: FunctionComponent<NameInputProps> = ({
         />
       ) : (
         <>
+          <IconButton onClick={handleEdit}>{icon}</IconButton>
           <Grid item xs>
-            <Typography variant={fontSize}>{name}</Typography>
+            <Typography variant={fontSize}>{name || placeholder}</Typography>
           </Grid>
-          <IconButton onClick={handleEdit}>
-            <Edit />
-          </IconButton>
         </>
       )}
     </Grid>

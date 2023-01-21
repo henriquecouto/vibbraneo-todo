@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
-import { TodoItems, TodoName } from "../features/todo";
+import { TodoItems, TodoName, AddItem } from "../features/todo";
 import { PrivateRoute } from "../layouts/private-route";
 import { ScreenContainer } from "../layouts/screen-container";
 
@@ -12,6 +12,7 @@ const TodoScreen: FunctionComponent = () => {
       <ScreenContainer>
         <TodoName id={Number(id)} />
         <TodoItems id={Number(id)} />
+        <AddItem id={Number(id)} />
       </ScreenContainer>
     </PrivateRoute>
   );

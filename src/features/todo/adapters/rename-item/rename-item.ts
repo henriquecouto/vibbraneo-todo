@@ -11,7 +11,7 @@ export const renameItemApi: RenameItemApi = async ({
 }) => {
   const itens = parsedItems
     .map((item) => renameItem(item, itemToRenameId, newName))
-    .map((item, index) => unparseItems(item, index));
+    .map(unparseItems);
 
   await api.patch(`/todo/${id}`, { itens });
 };
