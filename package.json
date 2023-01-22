@@ -7,7 +7,7 @@
     "dev": "concurrently \"yarn fake-api\" \"vite\"",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "fake-api": "json-server ./fake-api/db.json --middlewares ./fake-api/middlewares/auth.cjs",
+    "fake-api": "yarn json-server ./fake-api/db.json --middlewares ./fake-api/middlewares/auth.cjs",
     "prepare": "./prepare.sh"
   },
   "dependencies": {
