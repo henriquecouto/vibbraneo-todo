@@ -1,0 +1,12 @@
+{
+  "name": "fake-api",
+  "version": "1.0.0",
+  "main": "server.cjs",
+  "scripts": {
+    "start": "node server.cjs",
+    "build": "./prepare.sh"
+  },
+  "dependencies": {
+    "json-server": "^0.17.1"
+  }
+}
