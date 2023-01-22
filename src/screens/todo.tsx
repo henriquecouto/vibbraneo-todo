@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { TodoItems, TodoName, AddItem } from "../features/todo";
 import { PrivateRoute } from "../layouts/private-route";
 import { ScreenContainer } from "../layouts/screen-container";
