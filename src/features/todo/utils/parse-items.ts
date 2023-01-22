@@ -1,5 +1,5 @@
-import { TodoItem } from "../../entities/todo";
-import { ParsedTodoItem } from "../todo/adapters/get-todo/get-todo.types";
+import { TodoItem } from "../../../entities/todo";
+import { ParsedTodoItem } from "../adapters/get-todo/get-todo.types";
 
 export const parseItems = (item: TodoItem): ParsedTodoItem => ({
   id: item.id,

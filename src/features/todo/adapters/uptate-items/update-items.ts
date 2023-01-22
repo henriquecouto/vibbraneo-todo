@@ -1,5 +1,5 @@
 import { api } from "../../../../services/api";
-import { unparseItems } from "../../../utils/unparse-items";
+import { unparseItems } from "../../utils/unparse-items";
 import { UpdateItemsApi } from "./update-items.types";
 
 export const updateItemsApi: UpdateItemsApi = async ({ id, parsedItems }) => {

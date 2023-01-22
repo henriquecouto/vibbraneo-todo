@@ -1,7 +1,7 @@
 import { api } from "../../../../services/api";
 import { CreateItemApi } from "./create-item.types";
 import { v4 as uuidv4 } from "uuid";
-import { unparseItems } from "../../../utils/unparse-items";
+import { unparseItems } from "../../utils/unparse-items";
 
 export const createItemApi: CreateItemApi = async ({
   parentId,

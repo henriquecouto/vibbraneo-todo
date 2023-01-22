@@ -1,4 +1,4 @@
-import { TodoItem } from "../../entities/todo";
+import { TodoItem } from "../../../entities/todo";
 
 export const sortItems = (itemA: TodoItem, itemB: TodoItem) => {
   if (itemA.itens) {

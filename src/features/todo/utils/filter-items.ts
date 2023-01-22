@@ -1,4 +1,4 @@
-import { ParsedTodoItem } from "../todo/adapters/get-todo/get-todo.types";
+import { ParsedTodoItem } from "../adapters/get-todo/get-todo.types";
 
 export const filterItems = (
   item: ParsedTodoItem,

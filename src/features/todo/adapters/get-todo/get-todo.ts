@@ -1,6 +1,6 @@
 import { useApi } from "../../../../hooks/use-api";
-import { parseItems } from "../../../utils/parse-items";
-import { sortItems } from "../../../utils/sort-items";
+import { parseItems } from "../../utils/parse-items";
+import { sortItems } from "../../utils/sort-items";
 import { GetTodoApi } from "./get-todo.types";
 
 export const getTodoApi: GetTodoApi = ({ permalink }) => {

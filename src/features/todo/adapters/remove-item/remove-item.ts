@@ -1,6 +1,6 @@
 import { api } from "../../../../services/api";
-import { filterItems } from "../../../utils/filter-items";
-import { unparseItems } from "../../../utils/unparse-items";
+import { filterItems } from "../../utils/filter-items";
+import { unparseItems } from "../../utils/unparse-items";
 import { RemoveItemApi } from "./remove-item.types";
 
 export const removeItemApi: RemoveItemApi = async ({
