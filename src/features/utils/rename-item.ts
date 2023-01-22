@@ -2,7 +2,7 @@ import { ParsedTodoItem } from "../todo/adapters/get-todo/get-todo.types";
 
 export const renameItem = (
   item: ParsedTodoItem,
-  itemToRenameId: number,
+  itemToRenameId: string,
   newName: string
 ): ParsedTodoItem => {
   if (item.id === itemToRenameId) {

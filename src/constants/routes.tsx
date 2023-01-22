@@ -13,5 +13,5 @@ export const routes: Record<AllowedRoutes, Route> = {
   home: { path: "/", name: "My Lists", icon: <ViewList /> },
   about: { path: "/about", name: "About", icon: <Info /> },
   auth: { path: "/auth" },
-  list: { path: "/list/:id" },
+  list: { path: "/list/:slug" },
 };

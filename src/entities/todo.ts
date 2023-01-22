@@ -9,5 +9,5 @@ export type Todo = {
   id: number;
   name: string;
   permalink: string;
-  itens: TodoItem[];
+  itens?: TodoItem[];
 };

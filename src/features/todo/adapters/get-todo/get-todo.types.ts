@@ -1,7 +1,7 @@
 import { KeyedMutator } from "swr";
 import { Todo, TodoItem } from "../../../../entities/todo";
 
-export type GetTodoApiParams = { id: number };
+export type GetTodoApiParams = { permalink: string };
 
 export type ParsedTodoItem = {
   id: TodoItem["id"];

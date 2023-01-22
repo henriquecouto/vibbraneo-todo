@@ -25,7 +25,7 @@ export const TodoItem: FunctionComponent<TodoListProps> = ({ data }) => {
       </Link>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
-          <Typography variant="caption">{itens.length} items</Typography>
+          <Typography variant="caption">{itens?.length || 0} items</Typography>
         </Grid>
         <Grid item>
           <ShareButton value={todoLink} />

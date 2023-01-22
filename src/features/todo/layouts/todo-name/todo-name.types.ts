@@ -1,3 +1,4 @@
 export type TodoNameProps = {
-  id: number;
+  permalink: string;
+  name: string;
 };

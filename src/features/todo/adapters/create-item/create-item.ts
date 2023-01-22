@@ -10,7 +10,7 @@ export const createItemApi: CreateItemApi = async ({
 }) => {
   const itemId = uuidv4();
 
-  const unparsedItems = currentItems.map(unparseItems);
+  const unparsedItems = currentItems?.map(unparseItems) || [];
 
   unparsedItems.push({ id: itemId, item: name, order: -1 });
 

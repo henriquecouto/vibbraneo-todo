@@ -5,6 +5,6 @@ export type ItemProps = {
   item: ParsedTodoItem;
   collapseIcon: ReactNode;
   handler: ReactNode;
-  onDelete: (itemId: number) => void;
-  onRename: (itemId: number, name: string | undefined) => void;
+  onDelete: (itemId: string) => void;
+  onRename: (itemId: string, name: string | undefined) => void;
 };

@@ -2,7 +2,7 @@ import { ParsedTodoItem } from "../todo/adapters/get-todo/get-todo.types";
 
 export const filterItems = (
   item: ParsedTodoItem,
-  itemToRemoveId: number
+  itemToRemoveId: string
 ): ParsedTodoItem | undefined => {
   if (item.id === itemToRemoveId) {
     return;

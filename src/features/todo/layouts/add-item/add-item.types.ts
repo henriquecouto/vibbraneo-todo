@@ -1,3 +1,3 @@
 export type AddItemsProps = {
-  id: number;
+  permalink: string;
 };

@@ -2,7 +2,7 @@ import { Item } from "react-nestable";
 import { ItemProps } from "../item/item.types";
 
 export type TodoItemsProps = {
-  id: number;
+  permalink: string;
 };
 
 export type RenderItemProps = { item: Item } & Pick<

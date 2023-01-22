@@ -16,21 +16,21 @@ import { removeItemApi } from "../../adapters/remove-item";
 import { Item } from "../item/item";
 import { renameItemApi } from "../../adapters/rename-item";
 
-export const TodoItems: FunctionComponent<TodoItemsProps> = ({ id }) => {
-  const { data, mutate } = useTodo({ id });
+export const TodoItems: FunctionComponent<TodoItemsProps> = ({ permalink }) => {
+  const { data, mutate } = useTodo({ permalink });
 
-  const handleOnDeleteItem = async (itemId: number) => {
+  const handleOnDeleteItem = async (itemId: string) => {
     await removeItemApi({
-      id,
+      id: data.id,
       itemToRemoveId: itemId,
       parsedItems: data.items,
     });
     mutate();
   };
 
-  const handleOnRenameItem = async (itemId: number, name?: string) => {
+  const handleOnRenameItem = async (itemId: string, name?: string) => {
     await renameItemApi({
-      id,
+      id: data.id,
       itemToRenameId: itemId,
       newName: name,
       parsedItems: data.items,
@@ -49,7 +49,7 @@ export const TodoItems: FunctionComponent<TodoItemsProps> = ({ id }) => {
   );
 
   const handleOnChange = ({ items }: HandleChangeProps) => {
-    updateItemsApi({ parsedItems: items as ParsedTodoItem[], id });
+    updateItemsApi({ parsedItems: items as ParsedTodoItem[], id: data.id });
   };
 
   const renderCollapseIcon = ({ isCollapsed }: RenderCollapseIconProps) => (
