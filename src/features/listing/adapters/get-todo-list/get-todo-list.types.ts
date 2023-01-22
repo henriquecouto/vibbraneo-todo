@@ -1,3 +1,4 @@
+import { KeyedMutator } from "swr";
 import { Todo } from "../../../../entities/todo";
 
 export type GetTodoListApiParams = {
@@ -5,4 +6,7 @@ export type GetTodoListApiParams = {
   limit: number;
 };
 
-export type GetTodoListApi = (params: GetTodoListApiParams) => { data: Todo[] };
+export type GetTodoListApi = (params: GetTodoListApiParams) => {
+  data: Todo[];
+  mutate: KeyedMutator<any>;
+};

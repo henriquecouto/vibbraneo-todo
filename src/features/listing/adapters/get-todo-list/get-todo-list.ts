@@ -6,7 +6,7 @@ export const getTodoListApi: GetTodoListApi = ({ page, limit }) => {
   searchParams.append("_page", `${page}`);
   searchParams.append("_limit", `${limit}`);
 
-  const { data } = useApi({ path: `/todo?${searchParams.toString()}` });
+  const { data, mutate } = useApi({ path: `/todo?${searchParams.toString()}` });
 
-  return { data };
+  return { data, mutate };
 };

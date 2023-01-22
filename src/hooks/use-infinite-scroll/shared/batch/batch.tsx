@@ -7,7 +7,7 @@ export const Batch = <T extends unknown>({
   onLoadAll,
   page,
 }: BatchProps<T>) => {
-  const { data } = onLoadAction({ page });
+  const { data, mutate } = onLoadAction({ page });
 
   useEffect(() => {
     if (!data.length) {
@@ -18,7 +18,7 @@ export const Batch = <T extends unknown>({
   return (
     <>
       {data.map((item: any, index) => (
-        <Component key={item.id || index} data={item} />
+        <Component key={item.id || index} data={item} mutate={mutate} />
       ))}
     </>
   );
