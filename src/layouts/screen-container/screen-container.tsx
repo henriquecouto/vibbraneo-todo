@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, FunctionComponent } from "react";
 import {
   AppBar,
   Box,
@@ -6,7 +6,6 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { FunctionComponent } from "react";
 import { GlobalTheme } from "../../theme/global";
 import { ScreenContainerProps } from "./screen-container.types";
 import { SideMenu } from "../side-menu";
